@@ -61,10 +61,12 @@ set first_name = 'Harpo'
 where first_name = 'Groucho' and last_name = 'Williams';
 
 -- 4d. Perhaps we were too hasty in changing GROUCHO to HARPO. It turns out that GROUCHO was the correct name after all! In a single query, if the first name of the actor is currently HARPO, change it to GROUCHO. Otherwise, change the first name to MUCHO GROUCHO, as that is exactly what the actor will be with the grievous error. BE CAREFUL NOT TO CHANGE THE FIRST NAME OF EVERY ACTOR TO MUCHO GROUCHO, HOWEVER! (Hint: update the record using a unique identifier.)
-update actor 
-set first_name = 'Mucho Groucho'
-where first_name = 'Harpo' and last_name = 'Williams';
-
+UPDATE actor 
+   SET first_name = CASE WHEN first_name = 'Groucho' THEN 'Mucho Groucho' ELSE first_name END,
+       first_name = CASE WHEN first_name = 'Harpo' THEN 'Groucho' ELSE first_name END
+WHERE (first_name = 'Groucho' AND last_name = 'Williams') 
+   OR (first_name = 'Harpo' AND last_name = 'Williams');
+   
 -- 5a. You cannot locate the schema of the address table. Which query would you use to re-create it?
 CREATE TABLE `address` (
   `address_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
