@@ -45,8 +45,8 @@ def welcome():
         f"/api/v1.0/precipitation<br>"
         f"/api/v1.0/stations<br>"
         f"/api/v1.0/tobs<br>"
-        f"/api/v1.0/<start><br>"
-        f"/api/v1.0/<start>/<end><br>"
+        f"/api/v1.0/<start> (enter date as mm/dd/yyyy) <br> "
+        f"/api/v1.0/<start>/<end> (enter date as mm/dd/yyyy) <br>"
     )
 
 @app.route("/api/v1.0/precipitation")
@@ -91,7 +91,8 @@ def prev_temps():
 def start(start):
 
     start_date = datetime.strptime("start", '%m-%d-%Y')
-    calcs = session.query(Measurements.tobs).filter(datetime.strptime(Measurements.date, '%m/%d/%Y') >= start_date)
+
+    calcs = session.query(Measurements.tobs).filter(datetime.strptime(Measurements.date, '%m/%d/%Y') >= datetime.date())
 
     records = []
     for record in calcs:
@@ -111,8 +112,8 @@ def start(start):
 
 @app.route("/api/v1.0/<start>/<end>")
 def startend(start, end):
-    start_date = datetime.strptime(start, "%Y-%m-%d")
-    end_date = datetime.strptime(end, "%Y-%m-%d")
+    start_date = datetime.strptime(start, '%m/%d/%Y')
+    end_date = datetime.strptime(end, '%m/%d/%Y')
     calcs = session.query(Measurements.tobs).filter(Measurements.date >= start_date).filter(Measurements.date <= end_date)
 
     records = []
@@ -128,5 +129,6 @@ def startend(start, end):
                     "avg_temp": tavg
                     }
     return jsonify(records_dict)
+
 if __name__ == '__main__':
     app.run(debug=True)
