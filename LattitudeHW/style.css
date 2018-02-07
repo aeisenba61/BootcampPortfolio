@@ -1,7 +1,57 @@
 h1 { 
+color: teal; 
+font-weight: bold;
+}
+
+h2 { 
+color: teal;
+font-size:28px; }
+
+h4 { 
 color: teal; }
+
+h6 { 
+color: teal; }
+
+p { 
+color: gray;
+font-size:20px;
+ }
 
 #bold-font {
   font-weight: bold;
   color: white;
+}
+
+.lattitude-logo {
+    font-family: "Helvetica Neue";
+    font-weight: Bold;
+    font-size:36px;
+}
+
+.gray {
+  background-color: darkgray;
+}
+
+
+#sidebar {
+	float: right;
+}
+
+#main-content {
+	float: left;
+}
+
+.sidebar-left .main{
+  float:right;
+}
+.idebar-left .sidebar{
+  float:left;
+}
+
+.sidebar-right .main{
+  float:left;
+}
+.idebar-right .sidebar{
+  float:right;
 }
