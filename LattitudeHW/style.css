@@ -56,8 +56,6 @@ font-size:20px;
   float:right;
 }
 
-h2, h6 {
-	a:link {
-    	color: teal;
-		}
-	}
+h2 a, h2 a:visited { color: teal }
+
+h6 a, h6 a:visited { color: teal }
