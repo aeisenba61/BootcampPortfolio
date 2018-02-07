@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Weather Visualization Dashboard - Aaron Eisenbarth</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
@@ -19,7 +19,8 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a href="index.html" class="navbar-brand lattitude-logo" href="#"> Lattitude</a>
+        <div class="col-sm-1"></div>
+        <a href="index.html" class="navbar-brand lattitude-logo"> Lattitude</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -35,7 +36,7 @@
               <li role="separator" class="divider"></li>
               <li><a href="comparison.html"> Comparison</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">One more separated link</a></li>
+              <li><a href="data.html">Data</a></li>
             </ul>
           </li>
           <li><a href="comparison.html">Comparison</a></li>
@@ -46,7 +47,35 @@
   </nav>
 
 
-
 </body>
-
+<div class="container-fluid">
+  <div class="row">
+    <div class= "main col-xs-12">
+      <div class="container-fluid">
+        <h2>Summary: Latitude vs. X Visualizations</h2>
+        <div class="panel panel-default">
+          <div class="panel-body">
+              <div class="col-xs-6">
+                <a href="Cloudiness.html" title=""><img src="https://github.com/aeisenba61/BootcampPortfolio/blob/master/LattitudeHW/Cloudiness%20(%25)%20vs.%20Latitude.png?raw=true" class="img-responsive">
+                <h4 align="center">Cloudiness vs. Latitude</h4></a>
+              </div>
+              <div class="col-xs-6">
+                <a href="humidity.html" title=""><img src="https://github.com/aeisenba61/BootcampPortfolio/blob/master/LattitudeHW/Humidity%20(%25)%20vs.%20Latitude.png?raw=true" class="img-responsive">
+                <h4 align="center">Humidity vs. Latitude</h4></a>
+              </div>
+              <div class="col-xs-6">
+                <a href="temp.html" title=""><img src=https://github.com/aeisenba61/BootcampPortfolio/blob/master/LattitudeHW/Temperature%20(F)%20vs.%20Latitude.png?raw=true class="img-responsive">
+                <h4 align="center">Temperature vs. Latitude</h4></a>
+              </div>
+              <div class="col-xs-6">
+                <a href="wind.html" title=""><img src=https://github.com/aeisenba61/BootcampPortfolio/blob/master/LattitudeHW/Wind%20Speed%20(mph)%20vs.%20Latitude.png?raw=true class="img-responsive">
+                <h4 align="center">Wind Speed vs. Latitude</h4></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>  
+</div>      
 </html>
