@@ -4,6 +4,11 @@ from splinter import Browser
 import pandas as pd
 from selenium import webdriver
 
+def init_browser():
+    # @NOTE: Replace the path with your actual path to the chromedriver
+    executable_path = {"executable_path": "C:/Users/aeise/Chrome/chromedriver.exe"}
+    return Browser("chrome", **executable_path, headless=False)
+
 def scrape():
 
 
@@ -32,8 +37,6 @@ def scrape():
     #print("Step 1:", news_title, " ", news_p)
 
 # JPL Mars Space Images - Featured Image
-
-    browser = Browser('chrome', headless=False)
     pic_url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
     browser.visit(pic_url)
 
@@ -95,7 +98,6 @@ def scrape():
     #print("Step 4", df.to_string(index = False))
 
 # Mars Hemispheres
-    browser = Browser('chrome', headless=False)
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     # Retrieve page with the requests module
     html = requests.get(url)
@@ -131,8 +133,7 @@ def scrape():
         'featured_image_url' : featured_image_url,
         'mars_weather' : mars_weather,
         'mars_html' : mars_html,
-        'hemisphere' : title,
-        'hemi-link' : hemi_img_url
+        'hemisphere' : mars_dict
         }
 
     return scrape_mars

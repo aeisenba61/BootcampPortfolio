@@ -1,3 +1,29 @@
 .col-lg-12 {
-    background: white;
+    background: #C0C0C0;
+    border-radius: 5px;
+}
+
+.col-lg-8 {
+    background: #C0C0C0;
+    border-radius: 5px;
+}
+
+.col-lg-4 {
+    background: #C0C0C0;
+    border-radius: 5px;
+}
+
+/*.col-lg-6 {
+    background: #C0C0C0;
+    border-radius: 5px;
+}*/
+
+
+.jumbotron{ 
+	background: #C0C0C0;
+	border-radius: 5px; }
+
+.col-md-12 {
+  background: #C0C0C0;
+  border-radius: 5px;
 }
