@@ -1,0 +1,143 @@
+<!-- ## Step 2 - MongoDB and Flask Application
+
+Use MongoDB with Flask templating to create a new HTML page that displays all of the information that was scraped from the URLs above.
+* Start by converting your Jupyter notebook into a Python script called `scrape_mars.py` with a function called `scrape` that will execute all of your scraping code from above and return one Python dictionary containing all of the scraped data.
+* Next, create a route called `/scrape` that will import your `scrape_mars.py` script and call your `scrape` function.
+  * Store the return value in Mongo as a Python dictionary.
+* Create a root route `/` that will query your Mongo database and pass the mars data into an HTML template to display the data.
+* Create a template HTML file called `index.html` that will take the mars data dictionary and display all of the data in the appropriate HTML elements. Use the following as a guide for what the final product should look like, but feel free to create your own design.
+
+![final_app_part1.png](Images/final_app_part1.png)
+![final_app_part2.png](Images/final_app_part2.png)
+
+## Hints
+
+* Use Pymongo for CRUD applications for your database. For this homework, you can simply overwrite the existing document each time the `/scrape` url is visited and new data is obtained.
+* Use Bootstrap to structure your HTML template. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars!</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body style="background-color:maroon;">
+  <div class="container text-center">
+    <h1 class="jumbotron">Everything Mars!
+      <p>Welcome to the website devoted to everything mars. Please explore below. </p>
+      <p>
+        <a class="btn btn-primary btn-lg" href="http://127.0.0.1:5000/scrape" role="button">Click 'ME' for a data refresh</a>
+      </p>
+    </h1>
+  </div>
+
+<!--     <div>
+      <ul style="list-style: none;">
+        {% for mar in mars %}
+          <li>{{ mar.name }}: {{ mar.cat }}</li>
+        {% endfor %}
+      </ul>
+    </div> -->
+<div class="container-fluid">
+  <div class="container text-left">
+    <div class = "col-lg-12 col-md-16 col-sm-16 text-left">
+      <div class="container-fluid">
+        <h2>Latest Mars News</h2>
+        <p>{{mars.news_title}}</p>
+        <p>{{mars.news_p}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<div class="container-fluid">
+  <div class="container text-left">
+    <div class = "col-lg-8 col-md-8 col-sm-8 text-left">
+      <div class="container-fluid">
+        <h2>Featured Mars Image</h2>
+        <img src = {{mars.feat_img}} class = "img-fluid" align = "middle">
+      </div>
+    </div>
+    <div class="sidebar col-xs-5">
+      <div class="container-fluid">
+        <h2><a href="comparison.html">Visualizations</a></h2>
+        <div class="col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="col-xs-6">
+                <a href="Cloudiness.html" title=""><img src="https://github.com/aeisenba61/BootcampPortfolio/blob/master/LattitudeHW/Cloudiness%20(%25)%20vs.%20Latitude.png?raw=true" class="img-responsive">
+                <h4>Cloudiness vs. Latitude</h4></a>
+              </div>
+              <div class="col-xs-6">
+                <a href="humidity.html" title=""><img src="https://github.com/aeisenba61/BootcampPortfolio/blob/master/LattitudeHW/Humidity%20(%25)%20vs.%20Latitude.png?raw=true" class="img-responsive">
+                <h4>Humidity vs. Latitude</h4></a>
+              </div>
+              <div class="col-xs-6">
+                <a href="temp.html" title=""><img src=https://github.com/aeisenba61/BootcampPortfolio/blob/master/LattitudeHW/Temperature%20(F)%20vs.%20Latitude.png?raw=true class="img-responsive">
+                <h4>Temperature vs. Latitude</h4></a>
+              </div>
+              <div class="col-xs-6">
+                <a href="wind.html" title=""><img src=https://github.com/aeisenba61/BootcampPortfolio/blob/master/LattitudeHW/Wind%20Speed%20(mph)%20vs.%20Latitude.png?raw=true class="img-responsive">
+                <h4>Wind Speed vs. Latitude</h4></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+ 
+
+
+    <div class="sidebar col-xs-5">
+      <div class="container-fluid">
+        <h2><a href="comparison.html">Visualizations</a></h2>
+        <div class="col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="col-xs-6">
+                <a href="Cloudiness.html" title=""><img src="https://github.com/aeisenba61/BootcampPortfolio/blob/master/LattitudeHW/Cloudiness%20(%25)%20vs.%20Latitude.png?raw=true" class="img-responsive">
+                <h4>Cloudiness vs. Latitude</h4></a>
+              </div>
+              <div class="col-xs-6">
+                <a href="humidity.html" title=""><img src="https://github.com/aeisenba61/BootcampPortfolio/blob/master/LattitudeHW/Humidity%20(%25)%20vs.%20Latitude.png?raw=true" class="img-responsive">
+                <h4>Humidity vs. Latitude</h4></a>
+              </div>
+              <div class="col-xs-6">
+                <a href="temp.html" title=""><img src=https://github.com/aeisenba61/BootcampPortfolio/blob/master/LattitudeHW/Temperature%20(F)%20vs.%20Latitude.png?raw=true class="img-responsive">
+                <h4>Temperature vs. Latitude</h4></a>
+              </div>
+              <div class="col-xs-6">
+                <a href="wind.html" title=""><img src=https://github.com/aeisenba61/BootcampPortfolio/blob/master/LattitudeHW/Wind%20Speed%20(mph)%20vs.%20Latitude.png?raw=true class="img-responsive">
+                <h4>Wind Speed vs. Latitude</h4></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>      
+
+<div class="container">     
+  <div class="row">
+    <div class="Footer col-xs-12"> 
+      <div class="well well-sm" align="center">
+        <h6>Website created by
+          <a href="https://github.com/aeisenba61" >Ironbeard Productions</a>
+          <span class="glyphicon glyphicon-king" aria-hidden="true"></span>
+        </h6>
+      </div>
+    </div>   
+  </div>
+</div>
+
+</body>
+
+</html>
