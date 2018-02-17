@@ -77,28 +77,16 @@ def scrape():
     url = 'https://space-facts.com/mars/'
 
     ## Retrieve page with the requests module
-    html = requests.get(url)
+    fact_url = "https://space-facts.com/mars/"
 
-    soup = BeautifulSoup(html.text, 'html.parser')
+    # Get df
+    df = pd.read_html(fact_url)
+    df = pd.DataFrame(df[0]).set_index(0)
 
-    td1 = []
-    td2 = []
+    # Convert table to HTML string
+    mars_html = df.to_html(header = False).replace('\n  ','').replace('<table border="1" class="dataframe">','').replace('</table','').replace('\n>','')
 
-    for tr in soup.find_all('tr'):	
-        td1.append(tr.find_all('td')[0].text.replace('\n',''))
-        td2.append(tr.find_all('td')[1].text.replace('\n',''))
-        
-    df = pd.DataFrame(
-        {'column_name': td1,
-         'stat': td2
-        })
-
-    mars_html = df.to_html
-
-
-    ##print(df.to_string(index = False))
-    #print("Step 4", df.to_string(index = False))
-
+#print("Step 4", df.to_string(index = False))
 # Mars Hemispheres
     executable_path = {"executable_path": "C:/Users/aeise/Chrome/chromedriver.exe"}
     browser = Browser("chrome", **executable_path, headless=False)
@@ -126,19 +114,20 @@ def scrape():
         hemi_img_url.append(results.ul.li.a['href'])
 
     mars_dict = dict(zip(title, hemi_img_url))
+
+
     #print(mars_dict)
     #print("Step 5",title, " ", hemi_img_url)
 
 #Create dictionary called scraper
 
-    scrape_mars = {
-        'news_title' : news_title,
-        'news_p' : news_p,
-        'featured_image_url' : featured_image_url,
-        'mars_weather' : mars_weather,
-        'mars_html' : mars_html,
-        'hemisphere' : mars_dict
-        }
+    scrape_mars = {}
+    scrape_mars['news_title'] = news_title
+    scrape_mars['news_p'] = news_p
+    scrape_mars['featured_image_url'] = featured_image_url
+    scrape_mars['mars_weather'] = mars_weather
+    scrape_mars['mars_html'] = mars_html
+    scrape_mars['hemisphere'] = mars_dict
 
     return scrape_mars
 
