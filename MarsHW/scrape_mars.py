@@ -4,13 +4,7 @@ from splinter import Browser
 import pandas as pd
 from selenium import webdriver
 
-# def init_browser():
-#     # @NOTE: Replace the path with your actual path to the chromedriver
-#     executable_path = {"executable_path": "C:/Users/aeise/Chrome/chromedriver.exe"}
-#     return Browser("chrome", **executable_path, headless=False)
-
 def scrape():
-
 
 # NASA Mars News
 
@@ -53,8 +47,8 @@ def scrape():
     partial = soup.find('a', class_ = 'button fancybox')['data-fancybox-href']
     featured_image_url = "https://www.jpl.nasa.gov" + partial
 
+    browser.quit()
     #print("Step 2:", featured_image_url)
-
 
 # Mars Weather
 
@@ -72,7 +66,8 @@ def scrape():
             mars_weather = (result.p.text)
 
     #print("Step 3:", mars_weather)
-    # Mars Facts
+
+# Mars Facts
     ## URL of Mars facts
     url = 'https://space-facts.com/mars/'
 
@@ -86,8 +81,8 @@ def scrape():
     # Convert table to HTML string
     mars_html = df.to_html(header = False).replace('\n  ','').replace('<table border="1" class="dataframe">','').replace('</table','').replace('\n>','')
 
-#print("Step 4", df.to_string(index = False))
-# Mars Hemispheres
+    #print("Step 4", df.to_string(index = False))
+#Mars Hemispheres
     executable_path = {"executable_path": "C:/Users/aeise/Chrome/chromedriver.exe"}
     browser = Browser("chrome", **executable_path, headless=False)
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
@@ -99,24 +94,26 @@ def scrape():
     titles = []
     for result in results:
         titles.append(result.text)
-    #print(titles)
+    # print(titles)
 
-    title = []
-    hemi_img_url = []
+
+    mars_list = []
 
     for x in titles:
+        mars_dict = {}
         browser.visit(url)
         browser.click_link_by_partial_text(x)
         html = browser.html
         soup = BeautifulSoup(html, 'html.parser')
         results = soup.find('div', class_= "downloads")
-        title.append(x)
-        hemi_img_url.append(results.ul.li.a['href'])
+        mars_dict['title'] = x
+        mars_dict['hemi_img_url'] = results.ul.li.a['href']
+        mars_list.append(mars_dict)
 
-    mars_dict = dict(zip(title, hemi_img_url))
+    browser.quit()
 
 
-    #print(mars_dict)
+    #print(mars_list)
     #print("Step 5",title, " ", hemi_img_url)
 
 #Create dictionary called scraper
@@ -127,7 +124,7 @@ def scrape():
     scrape_mars['featured_image_url'] = featured_image_url
     scrape_mars['mars_weather'] = mars_weather
     scrape_mars['mars_html'] = mars_html
-    scrape_mars['hemisphere'] = mars_dict
+    scrape_mars['hemisphere'] = mars_list
 
     return scrape_mars
 

@@ -28,110 +28,102 @@ Use MongoDB with Flask templating to create a new HTML page that displays all of
 </head>
 
 <body style="background-color:maroon;">
-  <div class="container text-center">
-    <h1 class="jumbotron">Everything Mars!
-      <p>Welcome to the website devoted to everything Mars. Please explore below. </p>
-      <p>
-        <a class="btn btn-primary btn-lg" href="http://127.0.0.1:5000/scrape" role="button">Click 'ME' for a data refresh</a>
-      </p>
+  <div class="container text-center" >
+    <h1 class="jumbotron" id="topbox">
+      <iframe src="https://giphy.com/embed/K9KpHvHIv7AoE" width="60" height="60" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+      Everything Mars! 
+      <iframe src="https://giphy.com/embed/K9KpHvHIv7AoE" width="60" height="60" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+      <p>Welcome to the website devoted to everything Mars.</p>
+      <p><a class="btn btn-primary btn-lg" href="http://127.0.0.1:5000/scrape" role="button">Click 'ME' to pull the latest updates</a></p>
     </h1>
   </div>
 
-<!--     <div>
-      <ul style="list-style: none;">
-        {% for mar in mars %}
-          <li>{{ mar.name }}: {{ mar.cat }}</li>
-        {% endfor %}
-      </ul>
-    </div> -->
-<div class="container-fluid">
-  <div class="container text-left">
-    <div class = "col-lg-12 text-left">
-      <h3>Latest Mars News</h3>
-      <div class="container-fluid">
-        <p>{{mars.news_title}}</p>
-        <p>{{mars.news_p}}</p>
-      </div>
-    </div>
-  </div>
-</div>
-<br>
-<br>
-<div class="container-fluid">
-  <div class="container text-left">
-    <div class = "col-lg-12 text-left">
-      <h3>Featured Mars Image</h3>
-      <div class = "col-lg-8 text-left">
+  <div class="container-fluid">
+    <div class="container text-left">
+      <div class = "col-lg-12 text-left">
+        <h3>Latest Mars News</h3>
         <div class="container-fluid">
-          
-          <img src = {{mars.featured_image_url}} class = "img-fluid" align = "middle">
-        </div>
-      </div>
-      <div class = "col-lg-4">
-        <div class="container-fluid">
-          <h3>Featured Mars Image</h3>
-          <p>{{mars.mars_weather}}</p>
-            <h3>Mars Facts</h3>
-          <table class="table-hover">{{mars.mars_html}}</table>
+          <p>{{mars.news_title}}</p>
+          <p>{{mars.news_p}}</p>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<br>
-<br>
-
-<div class="container-fluid">
-  <div class="container text-left">
-    <div class = "col-lg-12 text-left">
-      <h3>Mars Hemispheres</h3>
-      <div class="row">
-        
-        <div class = "col-lg-6">
-          <div class="container-fluid">
-            <h3 align="center">{{mars.hemisphere[0].title}}</h3>
-            <img src = {{mars.hemisphere[0].hemi_img_url}} alt = {{mars.hemisphere[0].title}} class = "img-fluid" align = "middle">
+  <br>
+  
+  <div class="container-fluid">
+    <div class="container text-left">
+      <div class = "col-lg-12 text-left">
+        <h3>Featured Mars Image</h3>
+        <div class = "col-lg-8 text-left">
+          <div class="container-fluid">   
+            <img src = {{mars.featured_image_url}} class = "img-responsive" align = "middle" style="width:110%">
           </div>
         </div>
-        <div class = "col-lg-6">
+        <div class = "col-lg-4">
           <div class="container-fluid">
-            <h3 align="center">{{mars.hemisphere[1].title}}</h3>
-            <img src= {{mars.hemisphere[1].hemi_img_url}} alt = {{mars.hemisphere[1].title}} class = "img-fluid" align = "middle">
+            <h3>Mars Weather</h3>
+            <p>{{mars.mars_weather}}</p>
+              <h3>Mars Facts</h3>
+            <table class="table-hover">{{mars.mars_html | safe }}</table>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class = "col-lg-6">
-          <div class="container-fluid">
-            <h3 align="center">{{mars.hemisphere[2].title}}</h3>
-            <img src = {{mars.hemisphere[2].hemi_img_url}} alt = {{mars.hemisphere[2].title}} class = "img-fluid" align = "middle">
+    </div>
+  </div>
+
+  <br>
+  
+  <div class="container-fluid">
+    <div class="container text-left">
+      <div class = "col-lg-12 text-left">
+        <h3>Mars Hemispheres</h3>
+        <div class="row">
+          <div class = "col-lg-6">
+            <div class="container-fluid">
+              <h3 align="center">{{mars.hemisphere[0].title}}</h3>
+              <img src = {{mars.hemisphere[0].hemi_img_url}} alt = {{mars.hemisphere[0].title}} class = "img-thumbnail" align = "middle">
+            </div>
+          </div>
+          <div class = "col-lg-6">
+            <div class="container-fluid">
+              <h3 align="center">{{mars.hemisphere[1].title}}</h3>
+              <img src= {{mars.hemisphere[1].hemi_img_url}} alt = {{mars.hemisphere[1].title}} class = "img-thumbnail" align = "middle">
+            </div>
           </div>
         </div>
-        <div class = "col-lg-6">
-          <div class="container-fluid">
-            <h3 align="center">{{mars.hemisphere[3].title}}</h3>
-            <img src= {{mars.hemisphere[3].hemi_img_url}} alt = {{mars.hemisphere[3].title}} class = "img-fluid" align = "middle">
+        <div class="row">
+          <div class = "col-lg-6">
+            <div class="container-fluid">
+              <h3 align="center">{{mars.hemisphere[2].title}}</h3>
+              <img src = {{mars.hemisphere[2].hemi_img_url}} alt = {{mars.hemisphere[2].title}} class = "img-thumbnail" align = "middle">
+            </div>
+          </div>
+          <div class = "col-lg-6">
+            <div class="container-fluid">
+              <h3 align="center">{{mars.hemisphere[3].title}}</h3>
+              <img src= {{mars.hemisphere[3].hemi_img_url}} alt = {{mars.hemisphere[3].title}} class = "img-thumbnail" align = "middle">
+            </div>
           </div>
         </div>
-      </div>
-    </div>  
+      </div>  
+    </div>
   </div>
-</div>
 
-<br>
-<br>
+  <br> 
 
-<div class="container">     
-  <div class="site-Footer">
-    <div class="col-md-12" align = "center"> 
-      <h6>Website created by
-        <a href="https://github.com/aeisenba61" >Ironbeard Productions</a>
-        <span class="glyphicon glyphicon-king" aria-hidden="true"></span>
-      </h6>
-    </div>   
+  <div class="container">     
+    <div class="site-Footer">
+      <div class="col-md-12" align = "center"> 
+        <h6>Website created by
+          <span class="glyphicon glyphicon-king" aria-hidden="true"></span>
+          <a href="https://github.com/aeisenba61" id="Ironbeard">Ironbeard Productions</a>
+          <span class="glyphicon glyphicon-king" aria-hidden="true"></span>
+        </h6>
+      </div>   
+    </div>
   </div>
-</div>
 
 </body>
 
