@@ -29,19 +29,23 @@ Use MongoDB with Flask templating to create a new HTML page that displays all of
 
 <body style="background-color:maroon;">
   <div class="container text-center" >
-    <h1 class="jumbotron" id="topbox">
-      <iframe src="https://giphy.com/embed/K9KpHvHIv7AoE" width="60" height="60" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-      Everything Mars! 
-      <iframe src="https://giphy.com/embed/K9KpHvHIv7AoE" width="60" height="60" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+    <div class="jumbotron" id="topbox" style="background: #B7410E; border-radius: 5px;">
+      <span>
+        <h1 style="display inline;">
+        <iframe src="https://giphy.com/embed/K9KpHvHIv7AoE" width="80" height="80" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+      Everything Mars!
+        <iframe src="https://giphy.com/embed/K9KpHvHIv7AoE" width="80" height="80" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+        </h1> 
+      </span>
       <p>Welcome to the website devoted to everything Mars.</p>
       <p><a class="btn btn-primary btn-lg" href="http://127.0.0.1:5000/scrape" role="button">Click 'ME' to pull the latest updates</a></p>
-    </h1>
+    </div>
   </div>
 
   <div class="container-fluid">
     <div class="container text-left">
-      <div class = "col-lg-12 text-left">
-        <h3>Latest Mars News</h3>
+      <div class = "col-lg-12 text-left" style="background: #B7410E; border-radius: 5px;">
+        <h2 style="text-decoration: underline;">Latest Mars News</h2>
         <div class="container-fluid">
           <p>{{mars.news_title}}</p>
           <p>{{mars.news_p}}</p>
@@ -49,13 +53,11 @@ Use MongoDB with Flask templating to create a new HTML page that displays all of
       </div>
     </div>
   </div>
-
   <br>
-  
   <div class="container-fluid">
     <div class="container text-left">
-      <div class = "col-lg-12 text-left">
-        <h3>Featured Mars Image</h3>
+      <div class = "col-lg-12 text-left" style="background: #B7410E; border-radius: 5px;">
+        <h2 style="text-decoration: underline;">Featured Mars Image</h2>
         <div class = "col-lg-8 text-left">
           <div class="container-fluid">   
             <img src = {{mars.featured_image_url}} class = "img-responsive" align = "middle" style="width:110%">
@@ -63,22 +65,20 @@ Use MongoDB with Flask templating to create a new HTML page that displays all of
         </div>
         <div class = "col-lg-4">
           <div class="container-fluid">
-            <h3>Mars Weather</h3>
+            <h2 style="text-decoration: underline;">Mars Weather</h2>
             <p>{{mars.mars_weather}}</p>
-              <h3>Mars Facts</h3>
+              <h2 style="text-decoration: underline;">Mars Facts</h2>
             <table class="table-hover">{{mars.mars_html | safe }}</table>
           </div>
         </div>
       </div>
     </div>
   </div>
-
   <br>
-  
   <div class="container-fluid">
     <div class="container text-left">
-      <div class = "col-lg-12 text-left">
-        <h3>Mars Hemispheres</h3>
+      <div class = "col-lg-12 text-left"  style="background: #B7410E; border-radius: 5px;">
+        <h2 style="text-decoration: underline;">Mars Hemispheres</h2>
         <div class="row">
           <div class = "col-lg-6">
             <div class="container-fluid">
@@ -113,14 +113,14 @@ Use MongoDB with Flask templating to create a new HTML page that displays all of
 
   <br> 
 
-  <div class="container">     
+  <div class="container" style="background: #B7410E; border-radius: 5px;">     
     <div class="site-Footer">
       <div class="col-md-12" align = "center"> 
-        <h6>Website created by
+        <h4 style="color=gray; ">Website created by
           <span class="glyphicon glyphicon-king" aria-hidden="true"></span>
           <a href="https://github.com/aeisenba61" id="Ironbeard">Ironbeard Productions</a>
           <span class="glyphicon glyphicon-king" aria-hidden="true"></span>
-        </h6>
+        </h4>
       </div>   
     </div>
   </div>
